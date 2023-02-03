@@ -4,11 +4,13 @@ var buttonList = document.querySelectorAll("button");
 for(var i=0; i<buttonList.length; i++){
     buttonList[i].addEventListener("click",function(){
         playDrum(this.innerHTML);
+        buttonAnimation(this.innerHTML);
     });
 }
 
 document.addEventListener("keypress",function(event){
     playDrum(event.key);
+    buttonAnimation(event.key);
 })
 
 function playDrum(key){
@@ -44,4 +46,14 @@ function playDrum(key){
         
         default: console.log(this.innerHTML);
     }
+}
+
+
+function buttonAnimation(key){
+    var activeButton = document.querySelector("."+key);
+    activeButton.classList.add("pressed");
+
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100);
 }
